@@ -110,4 +110,27 @@ class MainTest {
         assertFalse(actual);
     }
 
+    @Test
+    public void passwordContains123456() {
+        //given
+        String password = "Test123456";
+
+        //when
+        boolean actual = Main.validatePasswordBool(password);
+
+        //then
+        assertFalse(actual);
+    }
+    @Test
+    public void passwordContainsPasswort() {
+        //given
+        String password = "Hu12passwort";
+
+        //when
+        boolean actual = Main.validatePasswordBool(password);
+
+        //then
+        assertFalse(actual);
+    }
+
 }

@@ -7,30 +7,45 @@ public class Main {
 
     public static String validatePassword(String password) {
         if (password == null) {
-            return "Passwort ist leer";
-        } else if (password.length() < 8) {
-            return "Passwort zu kurz";
-        } else if (password.contains(" ")) {
-            return "Passwort enthält Leerzeichen";
+            return "Kein Passwort angegeben";
         }
-        else
+        if (password.length() < 8 || password.length() > 20) {
+            return "Passwort zu kurz";
+        }
+        if (password.contains(" ") || password.contains("123456") || password.contains("passwort")) {
+            return "Passwort enthält verbotene Zeichenketten";
+        }
+        if (!passwordContainsNumbers(password)) {
+            return "Passwort muss min. eine Zahl enthalten";
+        }
+        if (!passwordContainsUpperCase(password)) {
+            return "Passwort muss min. einen Großbuchstaben enthalten";
+        }
+        if (!passwordContainsLowerCase(password)) {
+            return "Passwort muss min. einen Kleinbuchstaben enthalten";
+        }
         return "Passwort korrekt";
     }
     public static boolean validatePasswordBool(String password) {
         if (password == null) {
             return false;
-        } else if (password.length() < 8 || password.length() > 20) {
+        }
+        if (password.length() < 8 || password.length() > 20) {
             return false;
-        } else if (password.contains(" ")) {
+        }
+        if (password.contains(" ") || password.contains("123456") || password.contains("passwort")) {
             return false;
-        } else if (!passwordContainsNumbers(password)) {
+        }
+        if (!passwordContainsNumbers(password)) {
             return false;
-        } else if (!passwordContainsUpperCase(password)) {
+        }
+        if (!passwordContainsUpperCase(password)) {
             return false;
-        } else if (!passwordContainsLowerCase(password)) {
+        }
+        if (!passwordContainsLowerCase(password)) {
             return false;
-        } else
-            return true;
+        }
+        return true;
     }
 
     public static boolean passwordContainsNumbers(String password) {
