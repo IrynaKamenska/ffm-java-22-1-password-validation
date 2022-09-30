@@ -77,7 +77,7 @@ class MainTest {
     @Test
     public void passwordContainsNumbers() {
         //given
-        String password = "a12346789";
+        String password = "aA12346789";
 
         //when
         boolean actual = Main.validatePasswordBool(password);
@@ -86,5 +86,28 @@ class MainTest {
         assertTrue(actual);
     }
 
+    @Test
+    public void passwordContainsUpperCase() {
+        //given
+        String password = "a12346789";
+
+        //when
+        boolean actual = Main.validatePasswordBool(password);
+
+        //then
+        assertFalse(actual);
+    }
+
+    @Test
+    public void passwordContainsLowerCase() {
+        //given
+        String password = "A12346789";
+
+        //when
+        boolean actual = Main.validatePasswordBool(password);
+
+        //then
+        assertFalse(actual);
+    }
 
 }

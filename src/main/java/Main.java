@@ -25,6 +25,10 @@ public class Main {
             return false;
         } else if (!passwordContainsNumbers(password)) {
             return false;
+        } else if (!passwordContainsUpperCase(password)) {
+            return false;
+        } else if (!passwordContainsLowerCase(password)) {
+            return false;
         } else
             return true;
     }
@@ -32,6 +36,22 @@ public class Main {
     public static boolean passwordContainsNumbers(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isDigit(password.charAt(i)))
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean passwordContainsUpperCase(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isUpperCase(password.charAt(i)))
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean passwordContainsLowerCase(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isLowerCase(password.charAt(i)))
                 return true;
         }
         return false;
