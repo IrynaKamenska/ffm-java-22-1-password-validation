@@ -3,4 +3,9 @@ public class Main {
 
         System.out.println("Hello world!");
     }
+
+    public static boolean validatePassword(String password) {
+
+        return true;
+    }
 }
