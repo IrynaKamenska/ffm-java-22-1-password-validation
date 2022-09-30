@@ -5,26 +5,42 @@ public class Main {
         System.out.println(validatePasswordBool(""));
     }
 
-    public static String validatePassword(String password) {
+    public static ValidationResult validatePassword(String password) {
+        ValidationResult validationResult = new ValidationResult();
+
         if (password == null) {
-            return "Kein Passwort angegeben";
+            validationResult.setResult(false);
+            validationResult.setMessage("Kein Passwort übergeben");
+            return validationResult;
         }
         if (password.length() < 8 || password.length() > 20) {
-            return "Passwort zu kurz";
+            validationResult.setResult(false);
+            validationResult.setMessage("Passwort zu kurz oder zu lang");
+            return validationResult;
         }
         if (password.contains(" ") || password.contains("123456") || password.contains("passwort")) {
-            return "Passwort enthält verbotene Zeichenketten";
+            validationResult.setResult(false);
+            validationResult.setMessage("Passwort enthält verbotene Zeichenketten");
+            return validationResult;
         }
-        if (passwordContainsNotNumbers(password)) {
-            return "Passwort muss min. eine Zahl enthalten";
+        if (passwordContainsNoNumbers(password)) {
+            validationResult.setResult(false);
+            validationResult.setMessage("Passwort muss min. eine Zahl enthalten");
+            return validationResult;
         }
-        if (passwordContainsNotUpperCase(password)) {
-            return "Passwort muss min. einen Großbuchstaben enthalten";
+        if (passwordContainsNoUpperCase(password)) {
+            validationResult.setResult(false);
+            validationResult.setMessage("Passwort muss min. einen Großbuchstaben enthalten");
+            return validationResult;
         }
-        if (passwordContainsNotLowerCase(password)) {
-            return "Passwort muss min. einen Kleinbuchstaben enthalten";
+        if (passwordContainsNoLowerCase(password)) {
+            validationResult.setResult(false);
+            validationResult.setMessage("Passwort muss min. einen Kleinbuchstaben enthalten");
+            return validationResult;
         }
-        return "Passwort korrekt";
+        validationResult.setResult(true);
+        validationResult.setMessage("Passwort ist korrekt");
+        return validationResult;
     }
     public static boolean validatePasswordBool(String password) {
         if (password == null) {
@@ -36,16 +52,16 @@ public class Main {
         if (password.contains(" ") || password.contains("123456") || password.contains("passwort")) {
             return false;
         }
-        if (passwordContainsNotNumbers(password)) {
+        if (passwordContainsNoNumbers(password)) {
             return false;
         }
-        if (passwordContainsNotUpperCase(password)) {
+        if (passwordContainsNoUpperCase(password)) {
             return false;
         }
-        return !passwordContainsNotLowerCase(password);
+        return !passwordContainsNoLowerCase(password);
     }
 
-    public static boolean passwordContainsNotNumbers(String password) {
+    public static boolean passwordContainsNoNumbers(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isDigit(password.charAt(i)))
                 return false;
@@ -53,7 +69,7 @@ public class Main {
         return true;
     }
 
-    public static boolean passwordContainsNotUpperCase(String password) {
+    public static boolean passwordContainsNoUpperCase(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isUpperCase(password.charAt(i)))
                 return false;
@@ -61,7 +77,7 @@ public class Main {
         return true;
     }
 
-    public static boolean passwordContainsNotLowerCase(String password) {
+    public static boolean passwordContainsNoLowerCase(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isLowerCase(password.charAt(i)))
                 return false;

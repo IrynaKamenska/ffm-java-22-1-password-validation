@@ -10,10 +10,11 @@ class MainTest {
         String password = "aA12435678";
 
         //when
-       String actual = Main.validatePassword(password);
+
+       String actual = Main.validatePassword(password).getMessage();
 
         //then
-        String expected = "Passwort korrekt";
+        String expected = "Passwort ist korrekt";
         assertEquals(expected, actual);
     }
 
@@ -23,7 +24,7 @@ class MainTest {
         String password = "1234567";
 
         //when
-        boolean actual = Main.validatePasswordBool(password);
+        boolean actual = Main.validatePassword(password).isResult();
 
         //then
         assertFalse(actual);
