@@ -15,13 +15,13 @@ public class Main {
         if (password.contains(" ") || password.contains("123456") || password.contains("passwort")) {
             return "Passwort enthält verbotene Zeichenketten";
         }
-        if (!passwordContainsNumbers(password)) {
+        if (passwordContainsNotNumbers(password)) {
             return "Passwort muss min. eine Zahl enthalten";
         }
-        if (!passwordContainsUpperCase(password)) {
+        if (passwordContainsNotUpperCase(password)) {
             return "Passwort muss min. einen Großbuchstaben enthalten";
         }
-        if (!passwordContainsLowerCase(password)) {
+        if (passwordContainsNotLowerCase(password)) {
             return "Passwort muss min. einen Kleinbuchstaben enthalten";
         }
         return "Passwort korrekt";
@@ -36,39 +36,36 @@ public class Main {
         if (password.contains(" ") || password.contains("123456") || password.contains("passwort")) {
             return false;
         }
-        if (!passwordContainsNumbers(password)) {
+        if (passwordContainsNotNumbers(password)) {
             return false;
         }
-        if (!passwordContainsUpperCase(password)) {
+        if (passwordContainsNotUpperCase(password)) {
             return false;
         }
-        if (!passwordContainsLowerCase(password)) {
-            return false;
+        return !passwordContainsNotLowerCase(password);
+    }
+
+    public static boolean passwordContainsNotNumbers(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i)))
+                return false;
         }
         return true;
     }
 
-    public static boolean passwordContainsNumbers(String password) {
-        for (int i = 0; i < password.length(); i++) {
-            if (Character.isDigit(password.charAt(i)))
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean passwordContainsUpperCase(String password) {
+    public static boolean passwordContainsNotUpperCase(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isUpperCase(password.charAt(i)))
-                return true;
+                return false;
         }
-        return false;
+        return true;
     }
 
-    public static boolean passwordContainsLowerCase(String password) {
+    public static boolean passwordContainsNotLowerCase(String password) {
         for (int i = 0; i < password.length(); i++) {
             if (Character.isLowerCase(password.charAt(i)))
-                return true;
+                return false;
         }
-        return false;
+        return true;
     }
 }

@@ -7,7 +7,7 @@ class MainTest {
     @Test
     public void passwordLengthGreaterThan8(){
         //given
-        String password = "12345678";
+        String password = "aA12435678";
 
         //when
        String actual = Main.validatePassword(password);
