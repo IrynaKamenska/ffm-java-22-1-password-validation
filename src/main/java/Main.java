@@ -23,8 +23,17 @@ public class Main {
             return false;
         } else if (password.contains(" ")) {
             return false;
-        }
-        else
+        } else if (!passwordContainsNumbers(password)) {
+            return false;
+        } else
             return true;
+    }
+
+    public static boolean passwordContainsNumbers(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i)))
+                return true;
+        }
+        return false;
     }
 }

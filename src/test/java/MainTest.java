@@ -74,4 +74,17 @@ class MainTest {
         assertFalse(actual);
     }
 
+    @Test
+    public void passwordContainsNumbers() {
+        //given
+        String password = "a12346789";
+
+        //when
+        boolean actual = Main.validatePasswordBool(password);
+
+        //then
+        assertTrue(actual);
+    }
+
+
 }
